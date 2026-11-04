@@ -1,0 +1,22 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /ranking/{docId} {
+      // Qualquer pessoa pode ler o ranking
+      allow read: if true;
+
+      // Só é permitido criar registros válidos; nunca editar ou apagar
+      allow create: if request.resource.data.keys().hasOnly(['nickname', 'tentativas', 'criadoEm'])
+                    && request.resource.data.nickname is string
+                    && request.resource.data.nickname.size() >= 1
+                    && request.resource.data.nickname.size() <= 20
+                    && request.resource.data.tentativas is int
+                    && request.resource.data.tentativas >= 1
+                    && request.resource.data.tentativas <= 1000
+                    && request.resource.data.criadoEm == request.time;
+
+      allow update, delete: if false;
+    }
+  }
+}

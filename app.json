@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Jogo de Adivinhação",
+    "slug": "jogo-adivinhacao",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {},
+    "plugins": [
+      "expo-status-bar"
+    ]
+  }
+}
